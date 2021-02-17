@@ -35,35 +35,51 @@ $(document).ready(function () {
 
 const names = [
     {
-      name: "kushal sharma"
+        "code": "ATL",
+        "city": "Atlanta GA",
+        "country": "US"
     },
     {
-      name: "Jeremy"
+        "code": "PEK",
+        "city": "Beijing",
+        "country": "CN"
     },
     {
-      name: "john"
+        "code": "LHR",
+        "city": "London",
+        "country": "GB"
     },
     {
-      name: "sandeep"
+        "code": "ORD",
+        "city": "Chicago IL",
+        "country": "US"
     },
     {
-      name: "mohit"
+        "code": "HND",
+        "city": "Tokyo",
+        "country": "JP"
     },
     {
-      name: "sanjeev"
+        "code": "LAX",
+        "city": "Los Angeles CA",
+        "country": "US"
     },
     {
-      name: "maininder"
+        "code": "CDG",
+        "city": "Paris",
+        "country": "FR"
     },
     {
-      name: "Ajay"
+        "code": "DFW",
+        "city": "Dallas/Fort Worth TX",
+        "country": "US"
     }
   ];
   
   function renderNames(arrayOfNames) {
     let liElemet = "";
     for (let i = 0; i < arrayOfNames.length; i++) {
-      liElemet += `<option>${arrayOfNames[i].name}</option>`;
+      liElemet += `<option>${arrayOfNames[i].city}</option>`;
     }
     document.getElementById("list-container").innerHTML = liElemet;
   }
@@ -73,7 +89,7 @@ const names = [
   filterNames=(event) => {
     var searchvalue = event.target.value;
     var filterNames = names.filter((v, i) => {
-      return v.name.includes(searchvalue);
+      return v.city.includes(searchvalue);
     });
     renderNames(filterNames);
   }
