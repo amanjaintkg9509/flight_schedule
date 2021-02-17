@@ -1,0 +1,215 @@
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/slider.css" />
+<h1 style="color: green;">Flight Search Engine</h1>
+<table border="1">
+    <tr>
+        <td colspan="2">Flight Search Engine</td>
+    </tr>
+    <tr>
+        <td class="searchTab">
+            <table border="1">
+                <tr>
+                    <td>
+                        <div class="tab">
+                            <button class="tablinks" onclick="openCity(event, 'London')">One Way</button>
+                            <button class="tablinks" onclick="openCity(event, 'Paris')">Return</button>
+                        </div>
+
+                        <div id="London" class="tabcontent">
+                            <h3> One way</h3>
+                            <p>
+                                <input type="text" placeholder="Enter Origin City">
+                            </p>
+                            <p>
+                                <input type="text" placeholder="Enter Destination City">
+                            </p>
+                            <label>Departure Date</label>
+                            <p>
+                                <input type="date" placeholder="Departure Date">
+                            </p>
+                            <label>Return Date</label>
+                            <p>
+                                <input type="date" placeholder="Return Date">
+                            </p>
+                            <p>
+                                <select aria-placeholder="Passengers">
+                                    <option>Passengers</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </p>
+                            <p>
+                                <button>Search</button>
+                            </p>
+                        </div>
+
+                        <div id="Paris" class="tabcontent">
+                            <h3> Return</h3>
+                            <p>
+                                <input type="text" placeholder="Enter Origin City">
+                            </p>
+                            <p>
+                                <input type="text" placeholder="Enter Destination City">
+                            </p>
+                            <label>Departure Date</label>
+                            <p>
+                                <input type="date" placeholder="Departure Date">
+
+                                <div class="search-container">
+                                    <input type="text" onkeyup="filterNames(event)" placeholder ="type some alphabet here">
+                                </div>
+                                <select class="list-container" id ="list-container">
+                                    <option>Kushal Sharma</option>
+                                </select>
+                            </p>
+                            <label>Return Date</label>
+                            <p>
+                                <input type="date" placeholder="Return Date">
+                            </p>
+                            <p>
+                                <select aria-placeholder="Passengers">
+                                    <option>Passengers</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </p>
+                            <p>
+                                <button>Search</button>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <div class="slidecontainer">
+                                <h3>Refine flight search</h3>
+                                <b>0 - <span id="priceMaxRange"></span></b>
+                                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+        <td>
+            <table border="1">
+                <tr>
+                    <td style="height: 83px;">
+                        <b>Pune > Delhi > Pune</b>
+                        <b style="float: right;">Pune > Delhi > Pune</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="card">
+                            <div class="container">
+                                <p><h4><b>Rs. 9.500.00</b></h4></p>
+                                <p><small>AI-202</small></p>
+                                <p>PNQ > DEL</p> 
+                                <p>Depart: 10.00 AM</p> 
+                                <p>Arrive: 12.00 PM</p> 
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="container">
+                                <p><h4><b>Rs. 9.500.00</b></h4></p>
+                                <p><small>AI-202</small></p>
+                                <p>PNQ > DEL</p> 
+                                <p>Depart: 10.00 AM</p> 
+                                <p>Arrive: 12.00 PM</p> 
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("priceMaxRange");
+    output.innerHTML = slider.value; // Display the default slider value
+
+    // Update the current slider value (each time you drag the slider handle)
+    slider.oninput = function () {
+        output.innerHTML = this.value;
+    }
+
+    $(document).ready(function () {
+        fetch('./json/cities.json',{
+            mode: 'no-cors' // 'cors' by default
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Do something with your data
+                console.log(data);
+            });
+        openCity(event, 'Paris')
+    })
+
+    const names = [
+        {
+          name: "kushal sharma"
+        },
+        {
+          name: "Jeremy"
+        },
+        {
+          name: "john"
+        },
+        {
+          name: "sandeep"
+        },
+        {
+          name: "mohit"
+        },
+        {
+          name: "sanjeev"
+        },
+        {
+          name: "maininder"
+        },
+        {
+          name: "Ajay"
+        }
+      ];
+      
+      function renderNames(arrayOfNames) {
+        let liElemet = "";
+        for (let i = 0; i < arrayOfNames.length; i++) {
+          liElemet += `<option>${arrayOfNames[i].name}</option>`;
+        }
+        document.getElementById("list-container").innerHTML = liElemet;
+      }
+      
+      renderNames(names);
+      
+      filterNames=(event) => {
+        var searchvalue = event.target.value;
+        var filterNames = names.filter((v, i) => {
+          return v.name.includes(searchvalue);
+        });
+        renderNames(filterNames);
+      }
+      
+</script>
