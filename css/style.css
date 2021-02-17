@@ -58,3 +58,58 @@ table{
 .searchTab{
   width:25%
 }
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 992px) {
+  .container {
+      width: 970px;
+   }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+@media (min-width: 992px) {
+  .col-md-6 {
+      grid-column: span 6;
+  }
+}
+
+input,select {
+  width: 100%;
+  
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.side-right{
+  float: right;
+}

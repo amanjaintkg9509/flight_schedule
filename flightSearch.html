@@ -3,9 +3,6 @@
 <h1 style="color: green;">Flight Search Engine</h1>
 <table border="1">
     <tr>
-        <td colspan="2">Flight Search Engine</td>
-    </tr>
-    <tr>
         <td class="searchTab">
             <table border="1">
                 <tr>
@@ -76,7 +73,7 @@
                                 </select>
                             </p>
                             <p>
-                                <button>Search</button>
+                                <button class="block">Search</button>
                             </p>
                         </div>
                     </td>
@@ -87,7 +84,7 @@
                             <div class="slidecontainer">
                                 <h3>Refine flight search</h3>
                                 <b>0 - <span id="priceMaxRange"></span></b>
-                                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                                <input type="range" min="200" max="10000" step="200" value="4000" class="slider" id="myRange">
                             </div>
                         </div>
                     </td>
@@ -100,27 +97,60 @@
                 <tr>
                     <td style="height: 83px;">
                         <b>Pune > Delhi > Pune</b>
-                        <b style="float: right;">Pune > Delhi > Pune</b>
+                        <span class="side-right">
+                            <span>Depart : 1st Jan 2021</span><br/>
+                            <span>Return : 10th Jan 2021</span>
+                        </span>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="card">
                             <div class="container">
-                                <p><h4><b>Rs. 9.500.00</b></h4></p>
-                                <p><small>AI-202</small></p>
-                                <p>PNQ > DEL</p> 
-                                <p>Depart: 10.00 AM</p> 
-                                <p>Arrive: 12.00 PM</p> 
+                                <h2><b>Rs. 9.500.00</b></h2>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><small>AI-202</small></p>
+                                        <p>PNQ > DEL</p> 
+                                        <span>Depart: 10.00 AM</span><br/> 
+                                        <span>Arrive: 12.00 PM</span> 
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><small>AI-203</small></p>
+                                        <p>DEL > PNQ</p> 
+                                        <span>Depart: 10.00 AM</span><br/> 
+                                        <span>Arrive: 12.00 PM</span>  
+                                    </div>
+                                    <div class="col-sm-6 side-right">
+                                        <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" height="100px" width="230px"/>
+                                        <button class="block">Book This Flight</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card">
                             <div class="container">
-                                <p><h4><b>Rs. 9.500.00</b></h4></p>
-                                <p><small>AI-202</small></p>
-                                <p>PNQ > DEL</p> 
-                                <p>Depart: 10.00 AM</p> 
-                                <p>Arrive: 12.00 PM</p> 
+                                <h2><b>Rs. 9.500.00</b></h2>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p><small>AI-202</small></p>
+                                        <p>PNQ > DEL</p> 
+                                        <span>Depart: 10.00 AM</span><br/> 
+                                        <span>Arrive: 12.00 PM</span> 
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><small>AI-203</small></p>
+                                        <p>DEL > PNQ</p> 
+                                        <span>Depart: 10.00 AM</span><br/> 
+                                        <span>Arrive: 12.00 PM</span>   
+                                    </div>
+                                    <div class="col-sm-6 side-right">
+                                        <img src="https://homepages.cae.wisc.edu/~ece533/images/airplane.png" height="100px" width="230px"/>
+                                        <button class="block">Book This Flight</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </td>
@@ -131,85 +161,4 @@
 </table>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-    var slider = document.getElementById("myRange");
-    var output = document.getElementById("priceMaxRange");
-    output.innerHTML = slider.value; // Display the default slider value
-
-    // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function () {
-        output.innerHTML = this.value;
-    }
-
-    $(document).ready(function () {
-        fetch('./json/cities.json',{
-            mode: 'no-cors' // 'cors' by default
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Do something with your data
-                console.log(data);
-            });
-        openCity(event, 'Paris')
-    })
-
-    const names = [
-        {
-          name: "kushal sharma"
-        },
-        {
-          name: "Jeremy"
-        },
-        {
-          name: "john"
-        },
-        {
-          name: "sandeep"
-        },
-        {
-          name: "mohit"
-        },
-        {
-          name: "sanjeev"
-        },
-        {
-          name: "maininder"
-        },
-        {
-          name: "Ajay"
-        }
-      ];
-      
-      function renderNames(arrayOfNames) {
-        let liElemet = "";
-        for (let i = 0; i < arrayOfNames.length; i++) {
-          liElemet += `<option>${arrayOfNames[i].name}</option>`;
-        }
-        document.getElementById("list-container").innerHTML = liElemet;
-      }
-      
-      renderNames(names);
-      
-      filterNames=(event) => {
-        var searchvalue = event.target.value;
-        var filterNames = names.filter((v, i) => {
-          return v.name.includes(searchvalue);
-        });
-        renderNames(filterNames);
-      }
-      
-</script>
+<script src="./js/code.js"></script>
