@@ -22,13 +22,13 @@
                             <button class="tablinks" onclick="openCity(event, 'return')">Return</button>
                         </div>
                             <p>
-                                <input type="text" onkeyup="filterNames(event)" placeholder="Enter Origin City">
-                                <select class="list-container" id ="list-container">
+                                <input type="text" id="origin_city_name" onkeyup="filterNames(event)" placeholder="Enter Origin City">
+                                <select class="list-container" id ="list-container" onchange="origin_select(event)">
                                 </select>
                             </p>
                             <p>
-                                <input type="text"  onkeyup="filterNames1(event)" placeholder="Enter Destination City">
-                                <select class="list-container" id ="list-container1">
+                                <input type="text" id="dest_city_name" onkeyup="filterNames1(event)" placeholder="Enter Destination City">
+                                <select class="list-container" id ="list-container1" onchange="dest_select(event)">
                                 </select>
                             </p>
                             <div id="one_way" class="tabcontent">
@@ -167,14 +167,22 @@
 <script src="json/cities.json"></script>
 <script>
 
+    function dest_select(e){
+        document.getElementById('dest_city_name').value = e.target.value;
+    }
+
+    function origin_select(e){
+        document.getElementById('origin_city_name').value = e.target.value;
+    }
+
     var submit_button = $('#submit_form');
 
     submit_button.click(function() {
         var r_d_date = $('#r_d_date').val();
         var r_d_date1 = $('#r_d_date1').val();
         var r_r_date = $('#r_r_date').val();
-        var origin_city = $( "#list-container option:selected" ).text();
-        var destination_city = $( "#list-container1 option:selected" ).text();
+        var origin_city = $( "#list-container option:selected" ).val();
+        var destination_city = $( "#list-container1 option:selected" ).val();
 
         if(r_r_date){
             document.getElementById("address").innerHTML = origin_city +' > '+ destination_city +' > '+ origin_city;
@@ -231,15 +239,6 @@ $(document).ready(function () {
     document.getElementById("list-container1").setAttribute("style", "display: none;")
     document.getElementById("depart_hide").setAttribute("style", "display: none;")
     document.getElementById("return_hide").setAttribute("style", "display: none;")
-    //     fetch('json/cities.json',{
-//         mode: 'no-cors' // 'cors' by default
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             // Do something with your data
-//             console.log(data);
-//         });
-//     openCity(event, 'Paris')
 })
 
 const names = [
@@ -288,7 +287,7 @@ const names = [
   function renderNames(arrayOfNames) {
     let liElemet = "";
     for (let i = 0; i < arrayOfNames.length; i++) {
-      liElemet += `<option>${arrayOfNames[i].city}</option>`;
+      liElemet += `<option value="${arrayOfNames[i].code}">${arrayOfNames[i].city}</option>`;
     }
     document.getElementById("list-container").innerHTML = liElemet;
   }
@@ -308,11 +307,11 @@ const names = [
     renderNames(filterNames);
   }
 
-
+ 
   function renderNames1(arrayOfNames) {
     let liElemet = "";
     for (let i = 0; i < arrayOfNames.length; i++) {
-      liElemet += `<option>${arrayOfNames[i].city}</option>`;
+      liElemet += `<option value="${arrayOfNames[i].code}">${arrayOfNames[i].city}</option>`;
     }
     document.getElementById("list-container1").innerHTML = liElemet;
   }
