@@ -1,4 +1,4 @@
-[
+flights = `[
     {
       "id": "fc704c16fd79",
       "company": "US Airlines",
@@ -68,4 +68,4 @@
         }
       ]
     }
-  ]
+  ]`;

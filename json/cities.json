@@ -1,4 +1,4 @@
-[
+cities = `[
     {
         "code": "ATL",
         "city": "Atlanta GA",
@@ -579,4 +579,4 @@
         "city": "Nassau",
         "country": "BS"
     }
-]
+]`;
